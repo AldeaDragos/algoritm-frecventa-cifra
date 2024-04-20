@@ -29,13 +29,13 @@ void vectoriDeFrecventaCifra(int n, int fr[101]) {
 
 
 
-void vectoriDeFrecventaCifraMinMax(int n, int fr[101]) {
+void vectoriDeFrecventaNumarMinMax(int n, int fr[101]) {
 
 	for (int i = 0; i < n; i++) {
 		int x;
 		cin >> x;
 
-		fr[x] >> x;
+		fr[x]++;
 	}
 
 	int minFrecventa = n;
@@ -58,4 +58,41 @@ void vectoriDeFrecventaCifraMinMax(int n, int fr[101]) {
 	}
 	cout << "Numarul cu frecventa cea mai mica: " << minNumar << " cu frecventa " << minFrecventa << endl;
 	cout << "Numarul cu frecventa cea mai mare: " << maxNumar << " cu frecventa " << maxFrecventa << endl;
+}
+
+void vectoriDeFrecventaCifraMinMax(int n, int fr[101]) {
+
+	for (int i = 0; i < n; i++) {
+		int x;
+		cin >> x;
+
+		while (x != 0) {
+			int cifra = x % 10;
+			fr[cifra]++;
+			x /= 10;
+		}
+	}
+
+	
+
+	int minFrecventa = n;
+	int maxFrecventa = 0;
+	int minCifra = -1;
+	int maxCifra = -1;
+
+	for (int i = 1; i < 10; i++) {
+		if (fr[i] > 0) {
+			if (fr[i] < minFrecventa) {
+				minFrecventa = fr[i];
+				minCifra = i;
+			}
+			if (fr[i] > maxFrecventa) {
+				maxFrecventa = fr[i];
+				maxCifra = i;
+			}
+
+		}
+	}
+	cout << "Cifra cu frecventa cea mai mica: " << minCifra << " cu frecventa " << minFrecventa << endl;
+	cout << "Cifra cu frecventa cea mai mare: " << maxCifra << " cu frecventa " << maxFrecventa << endl;
 }
